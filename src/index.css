@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+:root {
+  --browser-width: 550px;
+  --browser-height: 350px;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  margin: 12em auto 0;
+  padding: 2em;
+  height: 400px;
+  background: linear-gradient(to right, rgb(111, 25, 168), rgb(55, 12, 110));
+  position: relative;
+  z-index: 1;
+}
+
+.browser {
+  width: var(--browser-width);
+  height: var(--browser-height);
+  margin: 0 auto;
+  background: lightgrey;
+  border: 2px solid rgb(116, 116, 116);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 4px 6px 11px rgb(0 0 0 / 25%);
+  animation: move 0.5s infinite linear alternate;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: " ";
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    background: black radial-gradient(circle 15px at 16px 10px, white 0 20%, black 50% 100%);
+  }
+
+  &::before {
+    transform: translate(200px, 100px);
+  }
+
+  &::after {
+    transform: translate(325px, 100px);
+  }
+}
+
+.tabs {
+  height: 40px;
+  background: #999;
+  display: flex;
+  align-items: flex-end;
+
+  & .tab {
+    width: 110px;
+    height: 30px;
+    background: #888;
+    margin: 0 4px;
+  }
+}
+
+.page {
+  background: #fff;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+}
+
+.mouth {
+  --translate-x: 0;
+  --translate-y: 100px;
+
+  background: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50% 50% 0 0;
+  transform: translateY(var(--translate-y));
+}
+
+.tear-container {
+  filter: drop-shadow(0 0 3px rgb(16, 124, 226));
+
+  & .tear {
+    background: linear-gradient(rgba(20, 187, 238, 0.1) 10%, rgba(20, 187, 238, 1));
+    position: absolute;
+    border-radius: 0 0 50% 50%;
+    width: 50px;
+    height: 50px;
+    clip-path: polygon(0 75%, 50% 0, 100% 75%, 100% 100%, 0 100%);
+    transform: translate(125px, 5px) scaleX(0.6);
+
+    &::after {
+      content: "";
+      display: block;
+      background: cyan;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      transform: translate(30px, 15px);
+      filter: blur(2px);
+    }
+  }
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  fill: rgb(134, 198, 250);
+  transform: translate(200px, 125px);
+}
+
+.legs {
+  display: flex;
+  justify-content: center;
+
+  & .leg svg {
+    width: 100px;
+    height: 100px;
+    transform: translateY(-5px) scaleX(var(--scale));
+    position: relative;
+    z-index: -1;
+  }
+
+  & .left.leg {
+    --scale: 1;
+
+    margin-right: 50px;
+  }
+
+  & .right.leg {
+    --scale: -1;
+
+    margin-left: 50px;
+  }
+}
+
+.globe {
+  display: flex;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  align-items: center;
+  background: rgb(238, 238, 232);
+  width: 125px;
+  height: 100px;
+  border-radius: 40%;
+  left: 800px;
+  top: -60px;
+  position: absolute;
+  z-index: 5;
+  animation: move 1s infinite alternate-reverse;
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 1) inset,
+    0 0 30px rgba(0, 0, 0, 0.5) inset;
+
+  &::before {
+    content: " ";
+    background: rgb(210, 210, 206);
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    transform: translate(0, 65px);
+    clip-path: polygon(0 0, 100% 0, 0 65%);
+  }
+}
+
+@keyframes light {
+  0% {
+    background: #ddd;
+    filter: blur(1px);
+  }
+
+  100% {
+    background: #eee;
+    filter: blur(4px);
+  }
+}
+
+@keyframes move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(25px); }
+}
+
+.browser-shadow {
+  width: var(--browser-width);
+  margin: auto;
+  height: 50px;
+  position: relative;
+  top: -30px;
+  z-index: -5;
+  animation:
+    move 0.5s linear infinite alternate-reverse,
+    light 0.5s linear infinite alternate-reverse;
+}
